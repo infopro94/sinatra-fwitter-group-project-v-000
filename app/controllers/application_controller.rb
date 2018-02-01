@@ -11,18 +11,17 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-
     erb :index
   end
 
 
     get '/signup' do
         if User.find_by_id(session[:user_id])
-          redirect :"tweets"
-else
+          redirect :"/tweets"
+		else
         erb :'/users/create_user'
-    end
-end
+    	end
+	end
 
     post '/signup' do
 
@@ -36,8 +35,8 @@ end
           redirect :"/tweets"
         else
           redirect :"/signup"
-    end
-  end
+    	end
+  	end
 
 
 

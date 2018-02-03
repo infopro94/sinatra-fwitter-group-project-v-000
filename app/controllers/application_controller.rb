@@ -11,7 +11,6 @@ class ApplicationController < Sinatra::Base
   end
 
     get '/' do
-  	
       erb :index
     end
 
@@ -20,7 +19,7 @@ class ApplicationController < Sinatra::Base
         if User.find_by_id(session[:user_id])
           redirect :"/tweets"
 		    else
-        erb :'/users/create_user'
+        erb :'/users/create'
     	 end
 	   end
 

@@ -4,29 +4,56 @@ class TweetsController < ApplicationController
  #    loads the tweets index after login 
  #    does not let user view login page if already logged in  -->
 
-	get '/tweets' do
+	 get '/tweets' do
 		if logged_in? 
 			@tweets = Tweet.all
-			erb :tweets
+			erb :'tweets/tweets'
 		else
-			redirect to 'login'
+			redirect to '/login'
 		end
 	end
 
-	  get '/tweets/new' do
+	 get '/tweets/new' do
     if logged_in?
-      erb :'tweets/create_tweet'
+      erb :'tweets/create'
     else
       redirect to '/login'
     end
   end
 
-  	get '/tweets/:id/edit' do
+    post '/tweets' do
+      if params[:content] == ""
+        redirect to :'/tweets/new'
+      else
+        @tweet = current_user.tweets.create(content: params[:content])
+        redirect to '/tweets/#{@tweet.id}'
+      end
+    end
+
+    get '/tweets/:id' do
+      if logged_in? 
+        @tweet = Tweet.find_by_id(params[:id])
+        erb :'tweets/show'
+      else
+        redirect to '/login'
+      end
+    end
+
+    get '/tweets/:id/edit' do
+      if logged_in?
   		@tweets = Tweet.find_by(params[:id])
-  		erb :'/tweets/edit'
+        if @tweet.user_id==current_user.id
+          erb :'/tweets/edit'
+        else
+          redirect to '/tweets'
+        end
+      else 
+        redirect to '/login'
+      end
   	end
 
-  	post '/tweets/:id' do
+  	patch '/tweets/:id' do
+      
 
   	end
 

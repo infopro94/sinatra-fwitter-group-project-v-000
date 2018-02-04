@@ -1,8 +1,5 @@
 class TweetsController < ApplicationController
 
-	# <!-- loads the login page 
- #    loads the tweets index after login 
- #    does not let user view login page if already logged in  -->
 
 	 get '/tweets' do
 		if logged_in? 
@@ -41,8 +38,8 @@ class TweetsController < ApplicationController
 
     get '/tweets/:id/edit' do
       if logged_in?
-  		@tweet = Tweet.find_by(params[:id])
-        if @tweet.user_id==current_user.id
+  		@tweet = Tweet.find_by_id(params[:id])
+        if @tweet.user_id == current_user.id
           erb :'/tweets/edit'
         else
           redirect to '/tweets'
@@ -57,7 +54,7 @@ class TweetsController < ApplicationController
         redirect to "/tweets/#{params[:id]}/edit"
       else
         @tweet=Tweet.find_by_id(params[:id])
-        @tweet.content=params[:content]
+        @tweet.content = params[:content]
         @tweet.save
         redirect to "/tweets/#{@tweet.id}"
       end

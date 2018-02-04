@@ -2,9 +2,8 @@ Welcome <%= current_user.username%>
 
 <h3>Tweets</h3>
 	
-	<% tweets.each do |tweet| %>
+	<% @tweets.each do |tweet| %>
 		<div>
 			<%= tweet.content %>
 		</div>
 	<%end%>
-

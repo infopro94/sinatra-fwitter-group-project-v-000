@@ -2,18 +2,26 @@
 <html>
 	<head>
 		<title>Fwitter</title>
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
 	</head>
 	<body>
-		<nav> <!---this is messed up. should welcome user & invite them to signup or login-->
+		<nav> 
 			<div class="container">
-			<!--- <h1>Welcome to Fwitter</h1> -->
-				<%=yield%>	
-			<a href="/login"> Have an account? Sign in here</a><br>
-			<a href="/signup"> Need an account? Sign up here</a>
+			 <!-- <h1>Welcome to Fwitter</h1>  -->
+				 <%=yield%>
+			<h3>Menu</h3>
+			<ul>
+  				<li><a href="/users/create">Sign up (required before posting)</a></li>
+  				<li><a href="/login">Have an account? Sign in here</a></li>
+
+			</ul>
+
+
+			<!-- <a href="/login"> Have an account? Sign in here</a><br>
+			<a href="/signup"> Need an account? Sign up here</a> -->
 			
 			<% if logged_in? %>
-			<a href="/tweets/create"> Compose Tweet </a>. <!--changed "tweets/new" to 'tweets/create'-->
+			<a href="/tweets/create"> Compose Tweet </a>. <!--changed "tweets/create" back to 'tweets/new'-->
 			<a href="/logout">Log Out</a><br>
 			<!--Welcome, <%=current_user.username%><br> not needed, have it in tweets.erb-->
 

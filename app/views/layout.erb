@@ -5,21 +5,24 @@
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
 	</head>
 	<body>
-		<nav>
+		<nav> <!---this is messed up. should welcome user & invite them to signup or login-->
+			<div class="container">
+			<!--- <h1>Welcome to Fwitter</h1> -->
+				<%=yield%>	
+			<a href="/login"> Have an account? Sign in here</a><br>
+			<a href="/signup"> Need an account? Sign up here</a>
+			
 			<% if logged_in? %>
 			<a href="/tweets/create"> Compose Tweet </a>. <!--changed "tweets/new" to 'tweets/create'-->
 			<a href="/logout">Log Out</a><br>
-			Welcome, <%=current_user.username%><br>
+			<!--Welcome, <%=current_user.username%><br> not needed, have it in tweets.erb-->
 
 			<%else%>
-			<a href="/signup"> Sign Up</a>
-			<a href="/login"> Sign </a>
+			
 		<%end%>
 		
 		</nav>
-		<div class="container">
-		<h1>Welcome to Fwitter</h1>
-		<%=yield%>	
+		
 	</div>
 </body>
 </html>

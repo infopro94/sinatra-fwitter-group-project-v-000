@@ -1,4 +1,4 @@
-<%=@user.username%>/'s Tweets
+Here are your tweets, <%= current_user.username%>. 
 
 <% @user.tweets.each do |tweet| %>
 	<div>

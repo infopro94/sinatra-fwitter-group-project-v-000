@@ -8,13 +8,20 @@
 	<body>
 		<nav> 
 			<div class="container">
-
 				<h1>Welcome to Fwitter</h1>
-			  
-			  
-				<a href="/logout">Log Out</a><br>
-				
-			</div>
-		</nav>		
+				<% yield %>			  			
+			</div>	
+			<% if logged_in? %>	
+			    <a href="/tweets/create_tweet"> Create Tweet </a><br>
+		        <a href="/logout"> Log Out </a><br>
+		        Welcome, <%=current_user.username%><br>
+	
+				<% else %>
+
+  				<a href="/users/create_user">Sign up (required before posting)</a><br>
+  				<a href="/login">Have an account? Sign in here</a><br>
+
+  				<%end%>
+		</nav>
 	</body>
 </html>

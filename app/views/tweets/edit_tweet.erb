@@ -1,13 +1,16 @@
 <h3>Edit Tweet</h3>
 
+<% Helpers.current_user(session).content%>
+	<% if logged_in? %>	
+
 	<form method="POST" action="/tweets/<%=@tweets.id%>">
 		<input id="hidden" type="hidden" name="_method" value="PATCH">
-		<input type="text" name="content" value="<%= tweet.content %>"> <!---removed @from in front of tweet.content-->
+		Content: <input type="text" name="content" value="<%= @tweet.content %>"> <!---removed @from in front of tweet.content-->
 		<input type="submit" value="Submit">
 
 	</form>
 
-
+	<% if logged_in? %>	
 	<form method="POST" action="/tweets/<%=@tweets.id%>/delete">
     	<input id="hidden" type="hidden" name="_method" value="DELETE">
       	<input type="submit" value="Delete Tweet">

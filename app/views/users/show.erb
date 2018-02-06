@@ -1,6 +1,6 @@
-Here are your tweets, <%= current_user.username%>. 
+Here are your tweets, <%= current_user %>. 
 
-<% @user.tweets.each do |tweet| %>
+<% current_user.tweets.each do |tweet| %>
 	<div>
 		<%= tweet.content %>
 	</div>

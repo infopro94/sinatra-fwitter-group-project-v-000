@@ -1,1 +1,30 @@
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fwitter</title>
+	</head>
+	<body>
+		<nav> 
+			<div class="container">
+			  
+			  <% if logged_in? %>	
+			    <p>Welcome, <%=current_user.username %></p>
+				<a href="/tweets/create_tweet"> Create Tweet </a><br>
+		        <a href="/logout"> Log Out </a><br>
+	
+				<% else %>
+
+  				<a href="/users/create_user">Sign up (required before posting)</a><br>
+  				<a href="/login">Have an account? Sign in here</a><br>
+
+  				<%end%>
+			
+				<a href="/tweets/create_tweet"> Compose Tweet </a> <br><!--changed "tweets/new" to 'tweets/create_tweet'-->
+				<a href="/logout">Log Out</a><br>
+				
+			</div>
+		</nav>		
+	</body>
+</html>

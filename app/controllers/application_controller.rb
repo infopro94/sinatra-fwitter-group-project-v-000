@@ -10,13 +10,13 @@ class ApplicationController < Sinatra::Base
 		set :session_secret, "password_security"
   end
 
-    get '/' do #added 2/5 from Nolan
+    get '/' do 
       if logged_in?
-      @user = User.find(current_user.id)
-      redirect to "/users/#{user.slug}"
-    else
-     erb :index
-    end
+       @user = User.find(current_user.id)
+       redirect to "/users/#{user.slug}"
+      else
+        erb :index
+      end
   end
 
 

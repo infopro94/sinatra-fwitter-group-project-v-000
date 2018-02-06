@@ -20,7 +20,7 @@ class TweetsController < ApplicationController
 
     post '/tweets' do
       if params[:content] == ""
-        redirect to :'/tweets/new'
+        redirect to :'/tweets/create' #changed from /new to /create
       else
         @tweet = current_user.tweets.create(content: params[:content])
         redirect to "/tweets/#{@tweet.id}"
@@ -62,7 +62,7 @@ class TweetsController < ApplicationController
 
     delete '/tweets/:id/delete' do
       if logged_in?
-        @tweet = Tweet.find_by_id(params[:id])
+        @tweet = Tweet.find_by_id(:id => params[:id])
         if @tweet.user_id == current_user
           @tweet.delete
           redirect to '/tweets'

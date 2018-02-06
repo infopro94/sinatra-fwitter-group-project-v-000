@@ -1,2 +1,14 @@
- <h1>Welcome to Fwitter</h1> 
+ <% if logged_in? %>	
+			    <p>Welcome, <%=current_user.username %></p>
+				<a href="/tweets/create_tweet"> Create Tweet </a><br>
+		        <a href="/logout"> Log Out </a><br>
+	
+				<% else %>
+
+  				<a href="/users/create_user">Sign up (required before posting)</a><br>
+  				<a href="/login">Have an account? Sign in here</a><br>
+
+  				<%end%>
+			
+				<a href="/tweets/create_tweet"> Compose Tweet </a> <br><!--changed "tweets/new" to 'tweets/create_tweet'-->
 

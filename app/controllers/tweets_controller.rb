@@ -18,16 +18,17 @@ class TweetsController < ApplicationController
     end
   end
 
-    post '/tweets' do
-      @tweet = Tweet.create(:content => params["tweet"])
+    post '/tweets' do  #all these changes and....nada.
+      # @tweet = Tweet.create(:content => params["tweet"])
       if params[:content] == ""
-        Tweet.last.delete
+        # Tweet.last.delete
         redirect to :'/tweets/create_tweet' #changed from /new to /create and added _tweet
       else
-        @tweet.save
-        @user = User.find_by_id(params[:user_id])
+        @tweet = current_user.tweets.create(content: params[:content])
+        # @tweet.save
+        # @user = User.find_by_id(params[:user_id])
           # current_user.tweets.create(content: params[:content])
-          @user.tweets << @tweet
+          # @user.tweets << @tweet
         redirect to "/tweets/#{@tweet.id}"
       end
     end
@@ -55,7 +56,7 @@ class TweetsController < ApplicationController
   	end
 
   	patch '/tweets/:id' do
-      @tweet = Tweet.find_by_id(params["id"])
+      # @tweet = Tweet.find_by_id(params["id"])
       if params[:content] == ""
         redirect to "/tweets/#{@tweet.id}/edit"
       else

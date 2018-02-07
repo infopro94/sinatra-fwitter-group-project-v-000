@@ -1,9 +1,7 @@
-<% if logged_in? %>	
-<% Helpers.current_user(session).username%>
 
-Here are your tweets, <%= current_user.username %>. 
+Here are your tweets, <%= @user.username %>. 
 
-<% user.tweets.each do |tweet| %>
+<% @	user.tweets.each do |tweet| %>
 	<div>
 		<%= tweet.content %>
 	</div>

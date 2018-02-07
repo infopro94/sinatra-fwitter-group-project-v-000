@@ -4,20 +4,19 @@ class UsersController < ApplicationController
 
 	   get '/users/:slug' do
     	 @user = User.find_by_slug(params[:slug])
-    	 erb :'/user'
+    	 erb :'users/show'
   	 end
 
   	get '/signup' do
   		if !logged_in?
-  			redirect to "/tweets"
+  			erb :'/users/create_user'
       else
-        erb :'/users/create_user'
-        
+        redirect to '/tweets'
   		end
 	   end
 
 
-    post '/signup' do
+    post '/signup' do #this now passes all Signup tests
       if logged_in?
         redirect '/tweets'
       elsif params[:username] == "" || params[:email] == "" || params[:password] == "" 
@@ -25,11 +24,8 @@ class UsersController < ApplicationController
       else
       		@user = User.create(params)
           @user.save 
-
-      		# @user.save
-      		# session[:user_id] = @user.id
-          redirect to "/tweets"
-
+      		session[:user_id] = @user.id
+          redirect '/tweets'
     	end
   	end
 
@@ -53,10 +49,10 @@ class UsersController < ApplicationController
 
     get '/logout' do
       if logged_in?
-    		session.clear
-    		redirect to '/login'
+          session.clear
+          redirect to '/login'
       else
-        redirect to '/tweets'
+    		redirect to '/tweets'
     end
   end
 

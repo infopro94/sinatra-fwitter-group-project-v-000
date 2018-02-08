@@ -1,2 +1,8 @@
-<!--code moved to layout. changed "tweets/new" to 'tweets/create_tweet'-->
+<% if logged_in? %>
+  <% @tweets.each do |tweet| %>
+    <div>
+    <a href="/tweets/<%=tweet.id%>/edit"><%= tweet.content %></a>
+    </div>
+  <%end%>
+  <%end%>
 

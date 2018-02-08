@@ -7,20 +7,22 @@
 	</head>
 	<body>
 		<nav> 
+			<% if logged_in? %>	<!-- keep as is, passes -->
+			    
+				<a href="/tweets">Home Page</a>
+				<a href="/tweets/new">Compose Tweet</a>
+				<a href="/logout"> Log Out </a><br>
+				Welcome, <%=current_user.username%><br>
+
+				<% else %>
+  				<a href="/signup">Sign Up</a><br>
+  				<a href="/login">Sign In</a><br>
+
 			<div class="container">
 				<h1>Welcome to Fwitter</h1>
-				<% yield %>			  			
 			</div>	
-			<% if logged_in? %>	
-			    Welcome, <%=current_user.username%><br>
-				<a href="/tweets/create_tweet"> Create Tweet </a><br>
-		        <a href="/logout"> Log Out </a><br>
-				<% else %>
-
-  				<a href="/signup">Sign up (required before posting)</a><br>
-  				<a href="/login">Have an account? Sign in here</a><br>
-
-  				<%end%>
+			<%end%>
+			<% yield %>			
 		</nav>
 	</body>
 </html>

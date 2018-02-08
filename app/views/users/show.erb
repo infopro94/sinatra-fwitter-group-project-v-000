@@ -1,9 +1,9 @@
 
-Here are your tweets, <%= @user.username %>. 
+Here are your tweets, <%= current_user.username %>. <!-- keep as is, passes -->
 
-<% @	user.tweets.each do |tweet| %>
+<% @tweets.each do |tweet| %>
 	<div>
-		<%= tweet.content %>
+	<a href="/tweets/<%=tweet.id%>/edit"><%= tweet.content %></a>
 	</div>
 
 	<%end%>

@@ -1,5 +1,3 @@
-require 'pry'
-
 class UsersController < ApplicationController
 
 	   get '/users/:slug' do
@@ -10,16 +8,18 @@ class UsersController < ApplicationController
   	get '/signup' do
   		if !logged_in?
   			erb :'/users/create_user'
+        
       else
-        redirect to '/tweets'
+        redirect to "/tweets"
+        # , locals: {message: "Please sign up to sign in"}
   		end
 	   end
 
 
-    post '/signup' do #this now passes all Signup tests
-      if logged_in?
+    post '/signup' do 
+      if logged_in? 
         redirect '/tweets'
-      elsif params[:username] == "" || params[:email] == "" || params[:password] == "" 
+        elsif params[:username] == "" || params[:email] == "" || params[:password] == "" 
     		redirect to "/signup"
       else
       		@user = User.create(params)
@@ -31,14 +31,15 @@ class UsersController < ApplicationController
 
   	get '/login' do
   		if !logged_in?
-  			erb :'users/login'
+        erb :'/users/login'
   		else
-  			redirect to '/tweets'
-  		end
+        redirect to '/tweets'
+      end
   	end
 
-  	post '/login' do #should not let a logged in user view the signup page
-  		   @user = User.find_by(:username => params[:username])
+
+  	post '/login' do 
+  		  @user = User.find_by(username: params[:username])
   		 if @user && @user.authenticate(params[:password])
   			session[:user_id] = @user.id
   			redirect to '/tweets'
@@ -52,7 +53,7 @@ class UsersController < ApplicationController
           session.clear
           redirect to '/login'
       else
-    		redirect to '/tweets'
+    		redirect to '/'
     end
   end
 

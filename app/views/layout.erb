@@ -6,6 +6,9 @@
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/style.css\"> 
 	</head>
 	<body>
+		<div class="container">
+				<h1>Welcome to Fwitter</h1>
+			</div>	
 		<nav> 
 			<% if logged_in? %>	<!-- keep as is, passes -->
 			    
@@ -18,11 +21,9 @@
   				<a href="/signup">Sign Up</a><br>
   				<a href="/login">Sign In</a><br>
 
-			<div class="container">
-				<h1>Welcome to Fwitter</h1>
-			</div>	
+			
 			<%end%>
-			<% yield %>			
+			<%=yield %>			
 		</nav>
 	</body>
 </html>

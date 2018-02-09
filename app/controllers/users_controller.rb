@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     	 erb :'users/show'
   	 end
 
-  	get '/signup' do
+  	get '/signup' do #part of the signup magic. Change this and add 4 errors
   		if !logged_in?
   			erb :'/users/create_user'
         
@@ -29,19 +29,19 @@ class UsersController < ApplicationController
     	end
   	end
 
-  	get '/login' do
-  		if !logged_in?
-        erb :'/users/login'
+  	get '/login' do #still no changes after removing !from logged_in? and switching redirect and erb
+  		if logged_in?
+          redirect to '/tweets'
   		else
-        redirect to '/tweets'
-      end
+          erb :'/users/login'
+        end
   	end
 
 
-  	post '/login' do 
-  		  @user = User.find_by(username: params[:username])
-  		 if @user && @user.authenticate(params[:password])
-  			session[:user_id] = @user.id
+  	post '/login' do #removed @ from user and user.authenticate and added 3 errors
+  		  user = User.find_by(username: params[:username])
+  		 if user && user.authenticate(params[:password])
+  			session[:user_id] = user.id
   			redirect to '/tweets'
   		else
   			redirect to '/login'
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
     get '/logout' do
       if logged_in?
-          session.clear
+          session.clear #tried with .destroy, no change
           redirect to '/login'
       else
     		redirect to '/'

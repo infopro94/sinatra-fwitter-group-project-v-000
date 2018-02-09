@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
     get '/' do 
       if logged_in?
        @user = User.find(current_user.id)
-       redirect to "/users/#{user.slug}"
+       redirect to "/users/#{@user.slug}"
       else
         erb :index
       end
@@ -26,9 +26,9 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+       User.find_by(id: session[:user_id]) if session[:user_id]
     end
-
+#deleted @current_user ||= from current_user
 
     end
   end

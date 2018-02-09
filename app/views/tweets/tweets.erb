@@ -4,8 +4,7 @@
 	
 	<% @tweets.each do |tweet| %>
 		<div>
-		<!-- <a href="/tweets/<%=tweet.id%>/edit"> -->
-			<%=tweet.content%></a> 
+		<a href="/tweets/<%=tweet.id%>/edit"><%=tweet.content%></a> <!--reinserted href and no change -->
 		</div>
 	<%end%>
 </body>

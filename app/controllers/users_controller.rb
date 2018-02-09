@@ -10,8 +10,7 @@ class UsersController < ApplicationController
   			erb :'/users/create_user'
         
       else
-        redirect to "/tweets"
-        # , locals: {message: "Please sign up to sign in"}
+        redirect to "/tweets", locals: {message: "Please sign up to sign in"} #added the locals bit back in, no change
   		end
 	   end
 
@@ -50,7 +49,7 @@ class UsersController < ApplicationController
 
     get '/logout' do
       if logged_in?
-          session.clear #tried with .destroy, no change
+          session.destroy #changed from 'clear', no change
           redirect to '/login'
       else
     		redirect to '/'
